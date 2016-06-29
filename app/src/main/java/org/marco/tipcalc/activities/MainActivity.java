@@ -19,6 +19,9 @@ import org.marco.tipcalc.R;
 import org.marco.tipcalc.TipCalcApp;
 import org.marco.tipcalc.fragments.TipHistoryListFragment;
 import org.marco.tipcalc.fragments.TipHistoryListFragmentListener;
+import org.marco.tipcalc.models.TipRecord;
+
+import java.util.Date;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -75,12 +78,25 @@ public class MainActivity extends AppCompatActivity {
         hideKeyboard();
         String strInputTotal=inputBill.getText().toString().trim();
         if (!strInputTotal.isEmpty()){
+            /*double total = Double.parseDouble(strInputTotal);
+            int tipPercentage = getTipPercentage();
+
+            TipRecord tipRecord = new TipRecord();
+            tipRecord.setBill(total);
+            tipRecord.setTipPercentage(tipPercentage);
+            tipRecord.setTimestamp(new Date());
+
+            String strTip = String.format(getString(R.string.global_message_tip)
+                    , tipRecord.getTip());
+            fragmentListener.addToList(tipRecord);
+            txtTip.setVisibility(View.VISIBLE);
+            txtTip.setText(strTip);*/
             double total = Double.parseDouble(strInputTotal);
             int tipPercentage = getTipPercentage();
             double tip = total*(tipPercentage/100d);
 
             String strTip = String.format(getString(R.string.global_message_tip), tip);
-            fragmentListener.action(strTip);
+                        fragmentListener.action(strTip);
             txtTip.setVisibility(View.VISIBLE);
             txtTip.setText(strTip);
         }
