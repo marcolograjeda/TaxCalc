@@ -3,12 +3,12 @@ package org.marco.tipcalc;
 import android.app.Application;
 
 /**
- * Created by marco on 6/28/16.
+ * Created by Angel on 19/06/16.
  */
-public class TipCalcApp extends Application{
+public class TipCalcApp extends Application {
     private final static String ABOUT_URL = "https://about.me/adriancatalan";
 
-    public String getAboutUrl() {
+    public static String getAboutUrl() {
         return ABOUT_URL;
     }
 }

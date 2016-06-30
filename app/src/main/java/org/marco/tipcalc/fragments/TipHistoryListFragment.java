@@ -1,6 +1,6 @@
 package org.marco.tipcalc.fragments;
 
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,31 +8,23 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-
-import org.marco.tipcalc.R;
-import org.marco.tipcalc.adapters.TipAdapter;
-import org.marco.tipcalc.models.TipRecord;
-
-import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import org.marco.tipcalc.R;
+import  org.marco.tipcalc.activities.TipDetailActivity;
+import  org.marco.tipcalc.adapter.CustomRecyclerAdapter;
+import  org.marco.tipcalc.adapter.OnItemClickListener;
+import  org.marco.tipcalc.model.TipRecord;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class TipHistoryListFragment extends Fragment implements TipHistoryListFragmentListener{
+public class TipHistoryListFragment extends Fragment implements OnItemClickListener, TipHistoryListFragmentListener {
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
-
-    private TipAdapter adapter;
+    private CustomRecyclerAdapter adapter;
 
     public TipHistoryListFragment() {
-        // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,7 +38,8 @@ public class TipHistoryListFragment extends Fragment implements TipHistoryListFr
 
     private void initAdapter() {
         if (adapter == null) {
-            adapter = new TipAdapter(getActivity().getApplicationContext(), new ArrayList<TipRecord>());
+            adapter = new CustomRecyclerAdapter();
+            adapter.setOnItemClickListener(this);
         }
     }
 
@@ -56,18 +49,22 @@ public class TipHistoryListFragment extends Fragment implements TipHistoryListFr
     }
 
     @Override
-    public void action(String str) {
-        Toast.makeText(getActivity(), str, Toast.LENGTH_SHORT).show();
+    public void onItemClick(TipRecord element) {
+        Intent i = new Intent(getActivity(), TipDetailActivity.class);
+
+        i.putExtra(TipDetailActivity.TIP_KEY, element.getTip());
+        i.putExtra(TipDetailActivity.BILL_TOTAL_KEY, element.getBill());
+        i.putExtra(TipDetailActivity.DATE_KEY, element.getDateFormatted());
+        startActivity(i);
     }
 
-
-    /*@Override
+    @Override
     public void addToList(TipRecord record) {
-        adapter.add(record);
+        adapter.addElement(record);
     }
 
     @Override
     public void clearList() {
         adapter.clear();
-    }*/
+    }
 }

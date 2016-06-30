@@ -1,12 +1,11 @@
 package org.marco.tipcalc.fragments;
 
-import org.marco.tipcalc.models.TipRecord;
-
 /**
- * Created by marco on 6/29/16.
+ * Created by Angel on 05/06/16.
  */
+import org.marco.tipcalc.model.TipRecord;
+
 public interface TipHistoryListFragmentListener {
-    void action(String str);
-    /*void addToList(TipRecord record);
-    void clearList();*/
+    void addToList(TipRecord record);
+    void clearList();
 }

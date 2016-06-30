@@ -4,17 +4,22 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/iconocalc"
         android:label="@string/app_name"
+        android:name="org.marco.tipcalc.TipCalcApp"
         android:supportsRtl="true"
-        android:name=".TipCalcApp"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.MainActivity">
+        <activity android:name="org.marco.tipcalc.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name="org.marco.tipcalc.activities.TipDetailActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.marco.tipcalc.activities.MainActivity"/>
         </activity>
     </application>
 
