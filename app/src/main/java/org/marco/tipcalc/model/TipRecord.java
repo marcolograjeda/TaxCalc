@@ -36,7 +36,7 @@ public class TipRecord {
     }
 
     public double getTip() {
-        return bill*(tipPercentage/100d);
+        return bill + (bill*(tipPercentage/100d));
     }
 
     public String getDateFormatted(){

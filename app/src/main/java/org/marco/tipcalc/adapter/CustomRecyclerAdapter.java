@@ -43,9 +43,10 @@ public class CustomRecyclerAdapter extends RecyclerView.Adapter<CustomRecyclerAd
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         TipRecord element = dataset.get(position);
-        String strTip = String.format("Propina %,.1f",
+        String strTip = String.format("Total %,.1f",
                 element.getTip());
         holder.txtContent.setText(strTip);
+        holder.txtDate.setText(element.getDateFormatted());
         if (this.clickListener != null) {
             holder.setOnItemClickListener(element, this.clickListener);
         }
@@ -68,8 +69,10 @@ public class CustomRecyclerAdapter extends RecyclerView.Adapter<CustomRecyclerAd
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private View view;
-        @Bind(R.id.txtContent) TextView txtContent;
-
+        @Bind(R.id.txtContent)
+        TextView txtContent;
+        @Bind(R.id.txtDate)
+        TextView txtDate;
         public ViewHolder(View view) {
             super(view);
             this.view = view;
